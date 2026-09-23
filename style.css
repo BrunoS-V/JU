@@ -19,26 +19,20 @@ body {
   font-family: 'Great Vibes', cursive;
   overflow: hidden;
   text-align: center;
-  color: #033f63;
+  color: #033f63; /* Cor base unificada para textos no modo normal */
   transition: background 8s ease, color 8s ease;
 }
 
 body.mood-shift {
-  /* Nova Paleta Romântica: Azul Marinho Profundo, Azul Petróleo, Roxo Crepúsculo, Lavanda Suave */
   background: linear-gradient(270deg, #03045e, #023e8a, #5e548e, #9f86c0);
-  background-size: 600% 600%; /* Mantém o tamanho para a animação continuar rodando */
-
-  /* Mudar as cores dos textos para ficarem claros no fundo escuro */
-  color: #ffffff; /* H1 fica branco puro para máximo contraste */
+  background-size: 600% 600%;
+  color: #ffffff; /* Cor unificada para todos os textos no modo escuro */
 }
 
-body.mood-shift p {
-  color: #cce7ff; /* Um azul bem clarinho para o parágrafo normal */
-}
-
-body.mood-shift #surprise {
-  color: #90dbf4; /* Ciano claro, mantendo o brilho */
-  text-shadow: 0 0 15px rgba(144, 219, 244, 0.8); /* Aumenta o brilho para destacar */
+/* Garante que o parágrafo e a surpresa sigam a mesma cor do body em ambos os estados */
+body p,
+body #surprise {
+  color: inherit; 
 }
 
 @keyframes bgAnimation {
@@ -78,17 +72,15 @@ h1 {
   border-right: 3px solid #5fa8d3;
   overflow: hidden;
   margin-bottom: 12px;
-
-  text-shadow:
-    0 0 12px rgba(72, 202, 228, 0.7),
-    0 0 30px rgba(72, 202, 228, 0.5);
+  color: inherit;
+  text-shadow: 0 0 12px rgba(72, 202, 228, 0.7);
 }
 
 /* TEXTO */
 p {
   font-size: 1.5rem;
-  color: #0353a4;
   margin-top: 8px;
+  color: inherit;
 }
 
 /* BOTÃO */
@@ -126,7 +118,7 @@ p {
 #surprise {
   margin-top: 22px;
   font-size: 1.7rem;
-  color: #219ebc; /* azul */
+  color: inherit;
   
   opacity: 0;
   transform: translateY(30px);
@@ -134,8 +126,6 @@ p {
   transition:
     opacity 7s ease,
     transform 7s ease;
-
-  text-shadow: 0 0 12px solid #5fa8d3;
 }
 
 /* estado visível */
@@ -196,13 +186,9 @@ body.mood-shift::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0); 
   pointer-events: none;
   z-index: 1;
   transition: background 8s ease;
-}
-
-body.mood-shift::before {
   background: rgba(0, 0, 0, 0.5); /* Fica escuro suavemente */
 }
 
@@ -212,21 +198,21 @@ body.mood-shift::before {
   z-index: 2; 
 }
 
-/* Opcional: Aumentar um pouco o brilho do H1 no modo noite para destacar mais */
-body.mood-shift h1 {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+/* Brilho unificado para os textos no modo noite */
+body.mood-shift h1,
+body.mood-shift p,
+body.mood-shift #surprise {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
 
 /* Animação que simula a batida grave */
 @keyframes pulseBeat {
   0% { background: rgba(0, 0, 0, 0.5); }
-  100% { background: rgba(0, 0, 0, 0.75); } /* Escurece um pouco mais na "pancada" do grave */
+  100% { background: rgba(0, 0, 0, 0.75); }
 }
 
 /* A classe que o JavaScript vai ativar na hora certa */
 body.beat-pulse::before {
-  /* O tempo '0.8s' simula o ritmo lento (BPM) da música. 
-     Se achar muito rápido, mude para 1s ou 1.2s */
   animation: pulseBeat 1.2s infinite alternate ease-in-out; 
 }
 
