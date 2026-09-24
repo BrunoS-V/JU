@@ -9,7 +9,10 @@ const phrases = [
   "Você é incrível",
   "Minha vida",
   "Meu chocolata branco",
-  "Lindoca"
+  "Lindoca",
+  "Meu céu estrelado ✨",
+  "O brilho do meu universo 🌌"
+  
 ];
 
 let phraseIndex = 0;
