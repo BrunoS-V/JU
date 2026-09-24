@@ -122,6 +122,7 @@ setInterval(createHeart, 500);
 /* BRILHO AO CLICAR */
 /* MENSAGENS ROMÂNTICAS ALEATÓRIAS AO CLICAR */
 /* MENSAGENS ROMÂNTICAS E BRILHO AO CLICAR */
+/* MENSAGENS ROMÂNTICAS E BRILHO AO CLICAR (Apenas fora da caixa) */
 const romanticPhrases = [
   "Sempre você 💙",
   "Meu porto seguro ✨",
@@ -133,13 +134,19 @@ const romanticPhrases = [
 ];
 
 document.addEventListener("click", (e) => {
+  // Pega a caixa principal para verificar se o clique foi dentro dela
+  const container = document.querySelector(".container");
+  
+  // Se o clique estiver dentro dos limites da caixa, não faz nada (retorna)
+  if (container && container.contains(e.target)) {
+    return;
+  }
+
   const spark = document.createElement("div");
   spark.classList.add("spark");
   
-  // Escolhe uma frase aleatória da lista
   spark.textContent = romanticPhrases[Math.floor(Math.random() * romanticPhrases.length)];
   
-  // Posiciona exatamente onde o usuário clicou
   spark.style.position = "absolute";
   spark.style.left = e.clientX + "px";
   spark.style.top = e.clientY + "px";
@@ -149,17 +156,16 @@ document.addEventListener("click", (e) => {
   spark.style.pointerEvents = "none";
   spark.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(139, 92, 246, 0.6)";
   spark.style.whiteSpace = "nowrap";
-  spark.style.zIndex = "9999"; // Garante que fique por cima de tudo
+  spark.style.zIndex = "9999";
   
-  // Aplica a animação para subir e sumir
-  spark.style.animation = "sparkAnim 1.8s ease forwards";
+  // Usa a nova animação com fade-in suave
+  spark.style.animation = "sparkFadeAnim 2s ease forwards";
 
   document.body.appendChild(spark);
 
-  // Remove o elemento da tela depois que a animação acaba
   setTimeout(() => {
     spark.remove();
-  }, 1800);
+  }, 2000);
 });
 /* ACESSIBILIDADE */
 playBtn.addEventListener("keydown", (e) => {
