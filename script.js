@@ -52,7 +52,7 @@ type();
 
 /* MÚSICA */
 const playBtn = document.getElementById("playBtn");
-const music = new Audio("freudian.mp3");
+const music = new Audio("CBJ.mp3");
 
 music.loop = true;
 music.volume = 0;
