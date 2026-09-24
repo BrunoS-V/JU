@@ -201,21 +201,55 @@ body.mood-shift::before {
   background: rgba(0, 0, 0, 0.35); 
 }
 
+/* CONTAINER GLASS (Camada 2 - Fica por cima do brilho) */
 .container {
-  position: relative;
-  z-index: 2; 
+  position: relative; /* Necessário para o z-index funcionar */
+  padding: 45px 55px;
+  border-radius: 28px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
+  z-index: 2;
+
+  animation: fadeIn 2s ease forwards;
 }
 
-/* Animação da batida da música */
-@keyframes pulseBeat {
-  0% { background: rgba(0, 0, 0, 0.35); }
-  100% { background: rgba(0, 0, 0, 0.65); }
+/* CAMADA DE BRILHO ATRÁS DA CAIXA (Aparece no modo noite/música) */
+body.mood-shift::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  /* Mistura das cores favoritas dela bem suaves no centro, atrás da caixa */
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(59, 130, 246, 0.2) 50%, transparent 70%);
+  filter: blur(40px);
+  z-index: 1; /* Fica estritamente entre o fundo e a caixa */
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 2s ease;
 }
 
+/* ANIMAÇÃO DA PULSAÇÃO EXATAMENTE ATRÁS DA CAIXA (No Drop - 25.08s) */
+@keyframes pulseBehindBox {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+    filter: blur(40px);
+  }
+  100% {
+    transform: scale(1.4); /* Expande o brilho para fora da caixa */
+    opacity: 0.9;
+    filter: blur(55px);
+  }
+}
+
+/* Quando a batida entra (aos 25.08s), o brilho de trás começa a pulsar forte */
 body.beat-pulse::before {
-  animation: pulseBeat 1.2s infinite alternate ease-in-out; 
+  animation: pulseBehindBox 1.2s infinite alternate ease-in-out;
 }
-
 /* EFEITO DE AURORA / LUZ NEBULOSA (Com cores favoritas integradas) */
 body::after {
   content: "";
