@@ -216,3 +216,49 @@ body.mood-shift::before {
 body.beat-pulse::before {
   animation: pulseBeat 1.2s infinite alternate ease-in-out; 
 }
+
+/* EFEITO DE AURORA / LUZ NEBULOSA */
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%; /* Começa fora da tela para suavizar */
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  
+  /* Gradiente com as cores favoritas dela, muito transparente */
+  background: radial-gradient(circle, 
+    rgba(139, 92, 246, 0.15) 0%, /* Roxo suave */
+    rgba(59, 130, 246, 0.1) 25%, /* Azul suave */
+    rgba(34, 197, 94, 0.08) 50%, /* Verde suave */
+    rgba(239, 68, 68, 0.05) 75%, /* Vermelho suave */
+    transparent 100%
+  );
+  
+  /* Animação lenta e flutuante */
+  animation: auroraMove 25s ease infinite alternate;
+  pointer-events: none;
+  z-index: -1; /* Fica atrás de tudo, até do fundo principal */
+  opacity: 0;
+  transition: opacity 10s ease; /* Suaviza o aparecimento */
+}
+
+/* Quando a música toca, a aurora fica mais visível */
+body.mood-shift::after {
+  opacity: 1;
+}
+
+@keyframes auroraMove {
+  0% {
+    transform: translate(-5%, -5%) rotate(0deg);
+  }
+  33% {
+    transform: translate(5%, -2%) rotate(5deg);
+  }
+  66% {
+    transform: translate(-2%, 5%) rotate(-5deg);
+  }
+  100% {
+    transform: translate(5%, 5%) rotate(0deg);
+  }
+}
