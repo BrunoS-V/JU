@@ -1,18 +1,16 @@
-/* TEXTO DIGITANDO */
 /* TEXTO DIGITANDO DUPLO (Frases Alternadas) */
 const typing = document.getElementById("typing");
 
 // Lista de frases para alternar
 const phrases = [
   "Eu te amo ❤",
-  "Pra sempre", // Adicione aqui as frases que quiser
+  "Pra sempre", 
   "Você é incrível",
   "Minha vida",
   "Meu chocolata branco",
   "Lindoca",
   "Meu céu estrelado ✨",
   "O brilho do meu universo 🌌"
-  
 ];
 
 let phraseIndex = 0;
@@ -24,33 +22,27 @@ function type() {
   const currentPhrase = phrases[phraseIndex];
 
   if (isDeleting) {
-    // Apagando o texto
     typing.innerHTML = currentPhrase.substring(0, charIndex - 1);
     charIndex--;
-    typeSpeed = 100; // Velocidade mais rápida para apagar
+    typeSpeed = 100;
   } else {
-    // Escrevendo o texto
     typing.innerHTML = currentPhrase.substring(0, charIndex + 1);
     charIndex++;
-    typeSpeed = 150; // Velocidade normal para escrever
+    typeSpeed = 150;
   }
 
-  // Se terminou de escrever a frase
   if (!isDeleting && charIndex === currentPhrase.length) {
     isDeleting = true;
-    typeSpeed = 2000; // Pausa antes de começar a apagar (2 segundos)
-  } 
-  // Se terminou de apagar a frase
-  else if (isDeleting && charIndex === 0) {
+    typeSpeed = 2000;
+  } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
-    phraseIndex = (phraseIndex + 1) % phrases.length; // Passa para a próxima frase
-    typeSpeed = 500; // Pausa antes de começar a escrever a próxima
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    typeSpeed = 500;
   }
 
   setTimeout(type, typeSpeed);
 }
 
-// Inicia a digitação
 type();
 
 /* MÚSICA */
@@ -62,29 +54,26 @@ music.volume = 0;
 
 let isPlaying = false;
 
-/* FADE IN DO VOLUME */
 /* FADE IN DO VOLUME (Mais suave e lento) */
 function fadeInMusic() {
   let vol = 0;
   music.volume = 0;
   
-  // Aumenta o volume a cada 400ms (tempo maior = transição mais suave e lenta)
   const fade = setInterval(() => {
     if (vol < 0.3) {
-      vol += 0.01; // Sobe em passos menores para não ter saltos abruptos
-      // Garante que não ultrapasse o limite de 0.3
+      vol += 0.01;
       music.volume = Math.min(vol, 0.3);
     } else {
       clearInterval(fade);
     }
   }, 400); 
 }
+
 playBtn.addEventListener("click", () => {
   if (!isPlaying) {
     music.play();
     fadeInMusic();
 
-    // Atraso de 500ms (meio segundo) para a virada de cor ficar mais suave
     setTimeout(() => {
       document.body.classList.add("mood-shift");
     }, 500);
@@ -101,17 +90,16 @@ playBtn.addEventListener("click", () => {
     playBtn.textContent = "🎵";
     playBtn.classList.remove("playing");
     document.body.classList.remove("mood-shift");
-    document.body.classList.remove("beat-pulse"); // Garante que o pulso pare no pause
+    document.body.classList.remove("beat-pulse");
   }
   isPlaying = !isPlaying;
 });
-/* CORAÇÕES / ESTRELAS CAINDO */
+
 /* CORAÇÕES / ESTRELAS CAINDO COM AS CORES FAVORITAS */
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   
-  // Lista misturando corações de várias cores (Azul, Vermelho, Roxo, Verde) e estrelas
   const symbols = ["💙", "❤️", "💜", "💚", "✨", "💫"];
   heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
 
@@ -124,9 +112,7 @@ function createHeart() {
 }
 
 setInterval(createHeart, 500);
-/* BRILHO AO CLICAR */
-/* MENSAGENS ROMÂNTICAS ALEATÓRIAS AO CLICAR */
-/* MENSAGENS ROMÂNTICAS E BRILHO AO CLICAR */
+
 /* MENSAGENS ROMÂNTICAS E BRILHO AO CLICAR (Apenas fora da caixa) */
 const romanticPhrases = [
   "Sempre você 💙",
@@ -139,10 +125,8 @@ const romanticPhrases = [
 ];
 
 document.addEventListener("click", (e) => {
-  // Pega a caixa principal para verificar se o clique foi dentro dela
   const container = document.querySelector(".container");
   
-  // Se o clique estiver dentro dos limites da caixa, não faz nada (retorna)
   if (container && container.contains(e.target)) {
     return;
   }
@@ -163,7 +147,6 @@ document.addEventListener("click", (e) => {
   spark.style.whiteSpace = "nowrap";
   spark.style.zIndex = "9999";
   
-  // Usa a nova animação com fade-in suave
   spark.style.animation = "sparkFadeAnim 2s ease forwards";
 
   document.body.appendChild(spark);
@@ -172,6 +155,7 @@ document.addEventListener("click", (e) => {
     spark.remove();
   }, 2000);
 });
+
 /* ACESSIBILIDADE */
 playBtn.addEventListener("keydown", (e) => {
   if (e.key === "Enter" || e.key === " ") {
@@ -179,15 +163,13 @@ playBtn.addEventListener("keydown", (e) => {
   }
 });
 
-/* MOMENTO EXATO DA BATIDA / DROP */
-const momentoDaBatida = 07.58; // Segundo exato que você passou
+/* MOMENTO EXATO DA BATIDA / DROP (Corrigido para 25.08s) */
+const momentoDaBatida = 25.08; 
 
 music.addEventListener("timeupdate", () => {
-  // Ativa o pulso intenso apenas se a música estiver tocando E passar de 25.08s
   if (isPlaying && music.currentTime >= momentoDaBatida) {
     document.body.classList.add("beat-pulse");
   } else {
     document.body.classList.remove("beat-pulse");
   }
 });
-
