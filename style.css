@@ -306,3 +306,17 @@ body.mood-shift::after {
     transform: translate(5%, 5%) rotate(0deg);
   }
 }
+/* ANIMAÇÃO COM FADE-IN E FLUTUAÇÃO AO CLICAR FORA */
+@keyframes sparkFadeAnim {
+  0% {
+    transform: translate(-50%, 0) scale(0.5);
+    opacity: 0; /* Começa invisível para dar o fade-in */
+  }
+  20% {
+    opacity: 1; /* Aparece por completo rapidamente */
+  }
+  100% {
+    transform: translate(-50%, -70px) scale(1.1);
+    opacity: 0; /* Some suavemente no topo */
+  }
+}
