@@ -163,11 +163,12 @@ playBtn.addEventListener("keydown", (e) => {
   }
 });
 
-const momentoDaBatida = 24.5; // O momento exato em que a batida entra
+/* MOMENTO EXATO DA BATIDA / DROP */
+const momentoDaBatida = 25.08; // Segundo exato que você passou
 
 music.addEventListener("timeupdate", () => {
-  // Ativa o pulso apenas se passar de 24.5s E a música estiver tocando
-  if (music.currentTime >= momentoDaBatida && isPlaying) {
+  // Ativa o pulso intenso apenas se a música estiver tocando E passar de 25.08s
+  if (isPlaying && music.currentTime >= momentoDaBatida) {
     document.body.classList.add("beat-pulse");
   } else {
     document.body.classList.remove("beat-pulse");
