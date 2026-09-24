@@ -61,10 +61,14 @@ playBtn.addEventListener("click", () => {
   isPlaying = !isPlaying;
 });
 /* CORAÇÕES / ESTRELAS CAINDO */
+/* CORAÇÕES / ESTRELAS CAINDO COM AS CORES FAVORITAS */
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
-  heart.innerHTML = Math.random() > 0.5 ? "💙" : "✨";
+  
+  // Lista misturando corações de várias cores (Azul, Vermelho, Roxo, Verde) e estrelas
+  const symbols = ["💙", "❤️", "💜", "💚", "✨", "💫"];
+  heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
 
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = Math.random() * 3 + 4 + "s";
@@ -74,8 +78,7 @@ function createHeart() {
   setTimeout(() => heart.remove(), 7000);
 }
 
-setInterval(createHeart, 600);
-
+setInterval(createHeart, 500);
 /* BRILHO AO CLICAR */
 document.addEventListener("click", (e) => {
   const spark = document.createElement("div");
