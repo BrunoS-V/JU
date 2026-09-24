@@ -7,7 +7,9 @@ const phrases = [
   "Eu te amo ❤",
   "Pra sempre", // Adicione aqui as frases que quiser
   "Você é incrível",
-  "Minha vida"
+  "Minha vida",
+  "Meu chocolata branco",
+  "Lindoca"
 ];
 
 let phraseIndex = 0;
