@@ -1,15 +1,51 @@
 /* TEXTO DIGITANDO */
-const text = "Eu te amo ❤";
-let i = 0;
+/* TEXTO DIGITANDO DUPLO (Frases Alternadas) */
 const typing = document.getElementById("typing");
 
+// Lista de frases para alternar
+const phrases = [
+  "Eu te amo ❤",
+  "Pra sempre", // Adicione aqui as frases que quiser
+  "Você é incrível",
+  "Minha vida"
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 150;
+
 function type() {
-  if (i < text.length) {
-    typing.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(type, 150);
+  const currentPhrase = phrases[phraseIndex];
+
+  if (isDeleting) {
+    // Apagando o texto
+    typing.innerHTML = currentPhrase.substring(0, charIndex - 1);
+    charIndex--;
+    typeSpeed = 100; // Velocidade mais rápida para apagar
+  } else {
+    // Escrevendo o texto
+    typing.innerHTML = currentPhrase.substring(0, charIndex + 1);
+    charIndex++;
+    typeSpeed = 150; // Velocidade normal para escrever
   }
+
+  // Se terminou de escrever a frase
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    isDeleting = true;
+    typeSpeed = 2000; // Pausa antes de começar a apagar (2 segundos)
+  } 
+  // Se terminou de apagar a frase
+  else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length; // Passa para a próxima frase
+    typeSpeed = 500; // Pausa antes de começar a escrever a próxima
+  }
+
+  setTimeout(type, typeSpeed);
 }
+
+// Inicia a digitação
 type();
 
 /* MÚSICA */
