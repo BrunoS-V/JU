@@ -5,10 +5,10 @@
   box-sizing: border-box;
 }
 
-/* FUNDO LUNAR MÁGICO (Azul noturno, roxo, com tons profundos) */
+/* FUNDO LUNAR MÁGICO (Céu noturno profundo com as cores favoritas) */
 body {
   height: 100vh;
-  background: linear-gradient(270deg, #0b091a, #101432, #1f1a3a, #0b091a);
+  background: linear-gradient(270deg, #060919, #0d1633, #152042, #060919);
   background-size: 600% 600%;
   animation: bgAnimation 16s ease infinite;
 
@@ -19,15 +19,14 @@ body {
   font-family: 'Great Vibes', cursive;
   overflow: hidden;
   text-align: center;
-  color: #e2e8f0;
+  color: #ffffff;
   transition: background 8s ease, color 8s ease;
 }
 
-/* MODO NOITE / MÚSICA TOCANDO: Nebulosa Lunar com Azul, Roxo, Vermelho e Verde suave */
+/* MODO NOITE / MÚSICA TOCANDO: Nebulosa Lunar viva com Azul, Roxo, Vermelho e Verde */
 body.mood-shift {
-  background: linear-gradient(270deg, #050511, #1a0b2e, #2e0b1a, #0b2b1e, #050511);
+  background: linear-gradient(270deg, #03040f, #180929, #2b0818, #072217, #03040f);
   background-size: 800% 800%;
-  color: #ffffff;
 }
 
 /* Cores de texto unificadas e com brilho lunar */
@@ -106,7 +105,7 @@ p {
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
 }
 
-/* BOTÃO TOCANDO (Com brilho cibernético/mágico nas cores dela) */
+/* BOTÃO TOCANDO */
 #playBtn.playing {
   animation: pulseLunar 1.5s infinite alternate;
 }
@@ -140,7 +139,7 @@ p {
   transform: translateY(0);
 }
 
-/* ELEMENTOS CAINDO (Corações e estrelas usando as cores favoritas: azul, vermelho, roxo, verde) */
+/* ELEMENTOS CAINDO */
 .heart {
   position: absolute;
   top: -10vh;
@@ -207,7 +206,7 @@ body.mood-shift::before {
   z-index: 2; 
 }
 
-/* Animação da batida da música escurecendo suavemente o fundo lunar */
+/* Animação da batida da música */
 @keyframes pulseBeat {
   0% { background: rgba(0, 0, 0, 0.35); }
   100% { background: rgba(0, 0, 0, 0.65); }
@@ -217,35 +216,34 @@ body.beat-pulse::before {
   animation: pulseBeat 1.2s infinite alternate ease-in-out; 
 }
 
-/* EFEITO DE AURORA / LUZ NEBULOSA */
+/* EFEITO DE AURORA / LUZ NEBULOSA (Com cores favoritas integradas) */
 body::after {
   content: "";
   position: fixed;
-  top: -50%; /* Começa fora da tela para suavizar */
+  top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
   
-  /* Gradiente com as cores favoritas dela, muito transparente */
+  /* Gradiente com roxo, azul, verde e vermelho bem suaves */
   background: radial-gradient(circle, 
-    rgba(139, 92, 246, 0.15) 0%, /* Roxo suave */
-    rgba(59, 130, 246, 0.1) 25%, /* Azul suave */
-    rgba(34, 197, 94, 0.08) 50%, /* Verde suave */
-    rgba(239, 68, 68, 0.05) 75%, /* Vermelho suave */
+    rgba(139, 92, 246, 0.18) 0%,   /* Roxo */
+    rgba(59, 130, 246, 0.14) 25%,  /* Azul */
+    rgba(34, 197, 94, 0.10) 50%,   /* Verde */
+    rgba(239, 68, 68, 0.08) 75%,   /* Vermelho */
     transparent 100%
   );
   
-  /* Animação lenta e flutuante */
   animation: auroraMove 25s ease infinite alternate;
   pointer-events: none;
-  z-index: -1; /* Fica atrás de tudo, até do fundo principal */
-  opacity: 0;
-  transition: opacity 10s ease; /* Suaviza o aparecimento */
+  z-index: -1;
+  opacity: 0.4; /* Já começa visível de forma elegante */
+  transition: opacity 8s ease;
 }
 
-/* Quando a música toca, a aurora fica mais visível */
+/* Quando a música toca, a nebulosa ganha mais destaque */
 body.mood-shift::after {
-  opacity: 1;
+  opacity: 0.85;
 }
 
 @keyframes auroraMove {
