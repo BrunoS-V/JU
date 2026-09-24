@@ -5,12 +5,12 @@
   box-sizing: border-box;
 }
 
-/* FUNDO AZUL CLARO ANIMADO */
+/* FUNDO LUNAR MÁGICO (Azul noturno, roxo, com tons profundos) */
 body {
   height: 100vh;
-  background: linear-gradient(270deg, #cce7ff, #8ecae6, #219ebc);
+  background: linear-gradient(270deg, #0b091a, #101432, #1f1a3a, #0b091a);
   background-size: 600% 600%;
-  animation: bgAnimation 14s ease infinite;
+  animation: bgAnimation 16s ease infinite;
 
   display: flex;
   justify-content: center;
@@ -19,20 +19,23 @@ body {
   font-family: 'Great Vibes', cursive;
   overflow: hidden;
   text-align: center;
-  color: #033f63; /* Cor base unificada para textos no modo normal */
+  color: #e2e8f0;
   transition: background 8s ease, color 8s ease;
 }
 
+/* MODO NOITE / MÚSICA TOCANDO: Nebulosa Lunar com Azul, Roxo, Vermelho e Verde suave */
 body.mood-shift {
-  background: linear-gradient(270deg, #03045e, #023e8a, #5e548e, #9f86c0);
-  background-size: 600% 600%;
-  color: #ffffff; /* Cor unificada para todos os textos no modo escuro */
+  background: linear-gradient(270deg, #050511, #1a0b2e, #2e0b1a, #0b2b1e, #050511);
+  background-size: 800% 800%;
+  color: #ffffff;
 }
 
-/* Garante que o parágrafo e a surpresa sigam a mesma cor do body em ambos os estados */
+/* Cores de texto unificadas e com brilho lunar */
+body h1,
 body p,
 body #surprise {
-  color: inherit; 
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(110, 168, 254, 0.3);
 }
 
 @keyframes bgAnimation {
@@ -41,14 +44,15 @@ body #surprise {
   100% { background-position: 0% 50%; }
 }
 
-/* CONTAINER GLASS */
+/* CONTAINER GLASS (Efeito vidro fosco lunar) */
 .container {
   padding: 45px 55px;
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.3);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
   z-index: 2;
 
   animation: fadeIn 2s ease forwards;
@@ -69,56 +73,58 @@ body #surprise {
 h1 {
   font-size: 3.6rem;
   white-space: nowrap;
-  border-right: 3px solid #5fa8d3;
+  border-right: 3px solid rgba(255, 255, 255, 0.6);
   overflow: hidden;
   margin-bottom: 12px;
-  color: inherit;
-  text-shadow: 0 0 12px rgba(72, 202, 228, 0.7);
 }
 
 /* TEXTO */
 p {
   font-size: 1.5rem;
   margin-top: 8px;
-  color: inherit;
 }
 
-/* BOTÃO */
+/* BOTÃO LUNAR */
 #playBtn {
   margin-top: 24px;
   border: none;
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
 
-  background: #48cae4;
-  color: #023047;
+  background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+  color: #0f172a;
 
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 6px 18px rgba(0,0,0,0.4);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 #playBtn:hover {
   transform: scale(1.15);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
 }
 
-/* BOTÃO TOCANDO */
+/* BOTÃO TOCANDO (Com brilho cibernético/mágico nas cores dela) */
 #playBtn.playing {
-  animation: pulse 1.2s infinite;
+  animation: pulseLunar 1.5s infinite alternate;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+@keyframes pulseLunar {
+  0% { 
+    transform: scale(1); 
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 30px rgba(168, 85, 247, 0.6); 
+  }
+  100% { 
+    transform: scale(1.12); 
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.8), 0 0 40px rgba(34, 197, 94, 0.6); 
+  }
 }
 
 #surprise {
   margin-top: 22px;
   font-size: 1.7rem;
-  color: inherit;
   
   opacity: 0;
   transform: translateY(30px);
@@ -134,20 +140,20 @@ p {
   transform: translateY(0);
 }
 
-/* CORAÇÕES / ESTRELAS */
+/* ELEMENTOS CAINDO (Corações e estrelas usando as cores favoritas: azul, vermelho, roxo, verde) */
 .heart {
   position: absolute;
   top: -10vh;
   font-size: 1.3rem;
-  color: #90dbf4;
   animation: fall linear forwards;
-  opacity: 0.85;
+  opacity: 0.9;
   pointer-events: none;
+  text-shadow: 0 0 8px currentColor;
 }
 
 @keyframes fall {
   to {
-    transform: translateY(110vh);
+    transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
 }
@@ -155,14 +161,18 @@ p {
 /* CLIQUE COM BRILHO */
 .spark {
   position: absolute;
-  font-size: 20px;
+  font-size: 22px;
   animation: spark 1s ease forwards;
   pointer-events: none;
 }
 
 @keyframes spark {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
   to {
-    transform: translateY(-30px) scale(1.6);
+    transform: translateY(-40px) scale(1.8);
     opacity: 0;
   }
 }
@@ -175,7 +185,7 @@ p {
   #playBtn {
     width: 55px;
     height: 55px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -189,30 +199,20 @@ body.mood-shift::before {
   pointer-events: none;
   z-index: 1;
   transition: background 8s ease;
-  background: rgba(0, 0, 0, 0.5); /* Fica escuro suavemente */
+  background: rgba(0, 0, 0, 0.35); 
 }
 
-/* Garante que o container fique acima da camada de sombra */
 .container {
   position: relative;
   z-index: 2; 
 }
 
-/* Brilho unificado para os textos no modo noite */
-body.mood-shift h1,
-body.mood-shift p,
-body.mood-shift #surprise {
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-}
-
-/* Animação que simula a batida grave */
+/* Animação da batida da música escurecendo suavemente o fundo lunar */
 @keyframes pulseBeat {
-  0% { background: rgba(0, 0, 0, 0.5); }
-  100% { background: rgba(0, 0, 0, 0.75); }
+  0% { background: rgba(0, 0, 0, 0.35); }
+  100% { background: rgba(0, 0, 0, 0.65); }
 }
 
-/* A classe que o JavaScript vai ativar na hora certa */
 body.beat-pulse::before {
   animation: pulseBeat 1.2s infinite alternate ease-in-out; 
 }
-
