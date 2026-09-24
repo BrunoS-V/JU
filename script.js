@@ -58,18 +58,22 @@ music.volume = 0;
 let isPlaying = false;
 
 /* FADE IN DO VOLUME */
+/* FADE IN DO VOLUME (Mais suave e lento) */
 function fadeInMusic() {
   let vol = 0;
+  music.volume = 0;
+  
+  // Aumenta o volume a cada 400ms (tempo maior = transição mais suave e lenta)
   const fade = setInterval(() => {
     if (vol < 0.3) {
-      vol += 0.02;
-      music.volume = vol;
+      vol += 0.01; // Sobe em passos menores para não ter saltos abruptos
+      // Garante que não ultrapasse o limite de 0.3
+      music.volume = Math.min(vol, 0.3);
     } else {
       clearInterval(fade);
     }
-  }, 150);
+  }, 400); 
 }
-
 playBtn.addEventListener("click", () => {
   if (!isPlaying) {
     music.play();
