@@ -121,40 +121,45 @@ function createHeart() {
 setInterval(createHeart, 500);
 /* BRILHO AO CLICAR */
 /* MENSAGENS ROMÂNTICAS ALEATÓRIAS AO CLICAR */
+/* MENSAGENS ROMÂNTICAS E BRILHO AO CLICAR */
 const romanticPhrases = [
-  "Sempre você",
-  "Meu porto seguro",
-  "Te amo tanto",
-  "Em todas as vidas",
-  "Você é minha paz",
-  "Amor infinito",
-  "Minha lua"
+  "Sempre você 💙",
+  "Meu porto seguro ✨",
+  "Te amo tanto ❤️",
+  "Em todas as vidas 💜",
+  "Você é minha paz 💚",
+  "Amor infinito 💫",
+  "Minha lua 🌙"
 ];
 
 document.addEventListener("click", (e) => {
   const spark = document.createElement("div");
   spark.classList.add("spark");
   
-  // Define o texto como uma frase aleatória da lista
+  // Escolhe uma frase aleatória da lista
   spark.textContent = romanticPhrases[Math.floor(Math.random() * romanticPhrases.length)];
   
-  // Estiliza a mensagem para ela flutuar e ter cor
+  // Posiciona exatamente onde o usuário clicou
   spark.style.position = "absolute";
   spark.style.left = e.clientX + "px";
   spark.style.top = e.clientY + "px";
-  spark.style.color = "#ffffff"; // Cor base
-  spark.style.fontWeight = "bold";
+  spark.style.color = "#ffffff";
+  spark.style.fontFamily = "'Great Vibes', cursive";
+  spark.style.fontSize = "1.6rem";
   spark.style.pointerEvents = "none";
-  spark.style.fontFamily = "'Great Vibes', cursive"; // Usa a mesma fonte do site
-  spark.style.fontSize = "1.3rem";
-  spark.style.textShadow = "0 0 5px rgba(255,255,255,0.7)";
+  spark.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(139, 92, 246, 0.6)";
+  spark.style.whiteSpace = "nowrap";
+  spark.style.zIndex = "9999"; // Garante que fique por cima de tudo
   
-  // Aplica a animação (pode usar a mesma do spark original)
-  spark.style.animation = "spark 2s ease forwards"; // Aumentei o tempo para ler a frase
+  // Aplica a animação para subir e sumir
+  spark.style.animation = "sparkAnim 1.8s ease forwards";
 
-  document.body.appendChild(appendChild); // Corrigi o erro de digitação do seu código original
-  // O seu código original estava: document.body.appendChild(spark); e depois setTimeout(() => spark.remove(), 1000); 
-  // Eu vou manter a estrutura original que funciona, mas com o texto novo:
+  document.body.appendChild(spark);
+
+  // Remove o elemento da tela depois que a animação acaba
+  setTimeout(() => {
+    spark.remove();
+  }, 1800);
 });
 /* ACESSIBILIDADE */
 playBtn.addEventListener("keydown", (e) => {
